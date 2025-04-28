@@ -20,10 +20,14 @@ document.getElementById('send').addEventListener('click', function() {
 });
 
 // método forEach (percorre a lsita )
-botoes.forEach(botao => {
-    botao.addEventListener('click', function () { //quando o botão estiver clicado execute a seguinte função
-        botoes.forEach(b => b.classList.remove('active')); //Para cada botão b na lista botoes, remova a classe active
-        this.classList.add('active'); //this se refere ao botão clicado
+botoes.forEach(botao => { //forEach percorrea a lista botoes. 
+    botao.addEventListener('click', function () { //adiciona o evento de click e executa a função com botao como parâmetro
+        if (this.classList.contains('active')) { //verifica se o botao clicado contém a classe activa
+            this.classList.remove('active'); //se ela tiver, irá remover
+        } else {
+            botoes.forEach(botao => botao.classList.remove('active')); //forEach percorre a lsita botoes e remove a classe active dos botões
+            this.classList.add('active'); //e adiciona apenas no botao selecionado
+        }
     });
 });
 
